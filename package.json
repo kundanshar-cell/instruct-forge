@@ -1,0 +1,39 @@
+{
+  "name": "instruct-forge",
+  "version": "0.1.0",
+  "description": "Generate instruction-tuning datasets (JSONL) from structured data using Claude",
+  "main": "src/index.js",
+  "bin": {
+    "instruct-forge": "./bin/cli.js"
+  },
+  "keywords": [
+    "llm",
+    "fine-tuning",
+    "instruction-tuning",
+    "dataset-generation",
+    "alpaca",
+    "chatml",
+    "anthropic",
+    "claude"
+  ],
+  "author": "Kundan Sharma",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.0",
+    "commander": "^12.0.0",
+    "csv-parse": "^5.5.0"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "examples/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kundanshar-cell/instruct-forge.git"
+  }
+}

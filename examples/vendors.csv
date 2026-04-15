@@ -1,0 +1,9 @@
+AccountNum,Name,Country,VATNum,Currency,PaymentTerms,Blocked,Category
+V-000001,Acme Supplies Ltd,GB,GB123456789,GBP,Net30,No,Office Supplies
+V-000002,Global Tech Inc,US,US987654321,USD,Net60,No,IT Hardware
+V-000003,Euro Parts GmbH,DE,DE456789012,EUR,Net30,No,Manufacturing Parts
+V-000004,Singh & Associates,IN,27AABCS1234A1Z5,INR,Net90,No,Consulting
+V-000005,Pacific Goods Co.,SG,SG567890123,SGD,Immediate,Invoice,Logistics
+V-000006,Acme Supplies Limited,GB,GB123456789,GBP,Net30,No,Office Supplies
+V-000007,Northern Parts Ltd,GB,GB234567890,GBP,Net60,No,Manufacturing Parts
+V-000008,DataFlow Systems,US,,USD,Net30,No,Software
