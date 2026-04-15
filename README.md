@@ -1,8 +1,33 @@
 # instruct-forge
 
-Generate instruction-tuning datasets (JSONL) from structured data using Claude.
+Generate instruction-tuning datasets (JSONL) from structured data using Claude — for fine-tuning local LLMs on your own domain data.
 
-Feed in a CSV or JSON file, choose task types, and instruct-forge calls Claude to produce high-quality training pairs — ready to fine-tune a local LLM.
+## What problem does this solve?
+
+General-purpose LLMs (GPT, Claude, Llama) are trained on the open internet. They struggle with domain-specific structured data: ERP records, procurement tables, inventory exports, financial ledgers. Fine-tuning a smaller local model (Mistral, Phi, Llama 3) on your domain makes it faster, cheaper, and more accurate for your specific use case.
+
+The challenge is **creating the training data**. Writing thousands of instruction-output pairs by hand is impractical.
+
+instruct-forge solves this using a **teacher-student distillation** approach:
+1. You provide your structured data (CSV or JSON export from any system)
+2. Claude (the "teacher") reads each record and generates realistic, high-quality instruction-output pairs
+3. You train your local model (the "student") on those pairs
+4. The student learns to answer questions, extract fields, classify records, and summarise data — in your domain's language
+
+## What datasets can you build?
+
+instruct-forge works with any structured, tabular data. Common use cases:
+
+| Domain | Example input | What you train the model to do |
+|---|---|---|
+| Procurement / ERP | Vendor master, purchase orders, invoices | Answer supplier queries, extract payment terms, flag anomalies |
+| Finance | GL entries, cost centres, budgets | Classify spend, summarise transactions, answer "what was spent on X?" |
+| HR | Employee records, job grades, org structure | Answer HR queries, extract role info, classify leave types |
+| Healthcare | Patient records, clinical codes, drug lists | Extract diagnoses, classify procedures, answer clinical Q&A |
+| Legal / Contracts | Contract metadata, clauses, parties | Extract key dates, classify contract type, summarise obligations |
+| Inventory | SKU catalogue, stock levels, suppliers | Answer product queries, classify items, summarise availability |
+
+The generated JSONL file is ready to feed directly into fine-tuning pipelines for Hugging Face Transformers, Axolotl, LLaMA-Factory, Unsloth, or any framework that accepts Alpaca or ChatML format.
 
 ## Quick start
 
