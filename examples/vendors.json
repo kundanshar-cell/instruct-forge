@@ -1,0 +1,80 @@
+[
+  {
+    "AccountNum": "V-000001",
+    "Name": "Acme Supplies Ltd",
+    "Country": "GB",
+    "VATNum": "GB123456789",
+    "RegistrationNumber": "04567890",
+    "Currency": "GBP",
+    "PaymentTerms": "Net30",
+    "PaymentMethod": "EFT",
+    "Category": "Office Supplies",
+    "Blocked": "No",
+    "OneTimeVendor": "No"
+  },
+  {
+    "AccountNum": "V-000002",
+    "Name": "Global Tech Inc",
+    "Country": "US",
+    "VATNum": "US987654321",
+    "RegistrationNumber": "78234561",
+    "Currency": "USD",
+    "PaymentTerms": "Net60",
+    "PaymentMethod": "Wire",
+    "Category": "IT Hardware",
+    "Blocked": "No",
+    "OneTimeVendor": "No"
+  },
+  {
+    "AccountNum": "V-000003",
+    "Name": "Euro Parts GmbH",
+    "Country": "DE",
+    "VATNum": "DE456789012",
+    "RegistrationNumber": "34567812",
+    "Currency": "EUR",
+    "PaymentTerms": "Net30",
+    "PaymentMethod": "Wire",
+    "Category": "Manufacturing Parts",
+    "Blocked": "No",
+    "OneTimeVendor": "No"
+  },
+  {
+    "AccountNum": "V-000004",
+    "Name": "Singh & Associates",
+    "Country": "IN",
+    "VATNum": "27AABCS1234A1Z5",
+    "RegistrationNumber": "91234567",
+    "Currency": "INR",
+    "PaymentTerms": "Net90",
+    "PaymentMethod": "EFT",
+    "Category": "Consulting",
+    "Blocked": "No",
+    "OneTimeVendor": "No"
+  },
+  {
+    "AccountNum": "V-000005",
+    "Name": "Pacific Goods Co.",
+    "Country": "SG",
+    "VATNum": "SG567890123",
+    "RegistrationNumber": "56781234",
+    "Currency": "SGD",
+    "PaymentTerms": "Immediate",
+    "PaymentMethod": "Check",
+    "Category": "Logistics",
+    "Blocked": "Invoice",
+    "OneTimeVendor": "No"
+  },
+  {
+    "AccountNum": "V-000006",
+    "Name": "Acme Supplies Limited",
+    "Country": "GB",
+    "VATNum": "GB123456789",
+    "RegistrationNumber": "04567890",
+    "Currency": "GBP",
+    "PaymentTerms": "Net30",
+    "PaymentMethod": "EFT",
+    "Category": "Office Supplies",
+    "Blocked": "No",
+    "OneTimeVendor": "No"
+  }
+]

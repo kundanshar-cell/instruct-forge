@@ -62,11 +62,83 @@ Rules:
 - Each row becomes one unit of training data — richer rows produce better pairs
 - Remove columns that are internal IDs with no semantic meaning (e.g. `ROW_ID`, `TIMESTAMP`)
 
+#### Option A — CSV format
+
 Example CSV (`examples/vendors.csv` is included in this repo):
 ```
 AccountNum,Name,Country,VATNum,Currency,PaymentTerms,Blocked,Category
 V-000001,Acme Supplies Ltd,GB,GB123456789,GBP,Net30,No,Office Supplies
 V-000002,Global Tech Inc,US,US987654321,USD,Net60,No,IT Hardware
+```
+
+#### Option B — JSON format
+
+JSON gives you richer fields per record. The file must be an array of objects — one object per vendor (or whatever entity you're training on).
+
+Example (`examples/vendors.json` is included in this repo):
+```json
+[
+  {
+    "AccountNum": "V-000001",
+    "Name": "Acme Supplies Ltd",
+    "Country": "GB",
+    "VATNum": "GB123456789",
+    "RegistrationNumber": "04567890",
+    "Currency": "GBP",
+    "PaymentTerms": "Net30",
+    "PaymentMethod": "EFT",
+    "Category": "Office Supplies",
+    "Blocked": "No",
+    "OneTimeVendor": "No"
+  },
+  {
+    "AccountNum": "V-000002",
+    "Name": "Global Tech Inc",
+    "Country": "US",
+    "VATNum": "US987654321",
+    "RegistrationNumber": "78234561",
+    "Currency": "USD",
+    "PaymentTerms": "Net60",
+    "PaymentMethod": "Wire",
+    "Category": "IT Hardware",
+    "Blocked": "No",
+    "OneTimeVendor": "No"
+  }
+]
+```
+
+Run instruct-forge on the JSON vendor master example:
+```bash
+instruct-forge \
+  --input examples/vendors.json \
+  --tasks qa,extraction,summarisation \
+  --pairs-per-row 5 \
+  --format alpaca \
+  --output vendor_training.jsonl \
+  --verbose
+```
+
+This will produce pairs like:
+```json
+{"instruction": "Is vendor V-000002 currently blocked?", "input": "{\"AccountNum\":\"V-000002\",\"Name\":\"Global Tech Inc\",...}", "output": "No, Global Tech Inc is not blocked."}
+{"instruction": "Extract the VAT number for Acme Supplies Ltd.", "input": "{\"AccountNum\":\"V-000001\",\"Name\":\"Acme Supplies Ltd\",...}", "output": "GB123456789"}
+{"instruction": "Summarise the payment details for vendor V-000001.", "input": "{...}", "output": "Acme Supplies Ltd (GB) accepts payment via EFT on Net30 terms in GBP. The vendor is active and not flagged as a one-time vendor."}
+```
+
+#### Generating large JSON datasets with erp-datagen
+
+If you don't have real data yet, use [erp-datagen](https://github.com/kundanshar-cell/erp-datagen) to generate realistic synthetic vendor master records for SAP, JDE, or D365:
+
+```bash
+# Generate 500 SAP vendor records as JSON
+npx erp-datagen --system sap-ecc --table lfa1 --rows 500 --format json --output vendors_sap.json
+
+# Feed directly into instruct-forge
+instruct-forge \
+  --input vendors_sap.json \
+  --tasks qa,extraction,classification \
+  --pairs-per-row 5 \
+  --output sap_vendor_training.jsonl
 ```
 
 ### Step 4 — Run a test first (limit to 3 rows)
