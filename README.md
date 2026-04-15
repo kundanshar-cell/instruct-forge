@@ -289,4 +289,5 @@ Using the default `claude-haiku-4-5` model at $1/M input tokens:
 
 ## License
 
-MIT
+Apache 2.0 — see [LICENSE](LICENSE) for details.
+Copyright 2026 Kundan Sharma.
